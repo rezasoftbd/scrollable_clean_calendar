@@ -25,7 +25,10 @@ class MonthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text =
-        '${DateFormat('MMMM', locale).format(DateTime(month.year, month.month)).capitalize()} ${DateFormat('yyyy', locale).format(DateTime(month.year, month.month))}';
+        '${DateFormat('MMMM', locale)
+        .format(DateTime(month.year, month.month))
+        .capitalize()} ${DateFormat('(yyyy)', locale).format(
+        DateTime(month.year, month.month))}';
 
     if (monthBuilder != null) {
       return monthBuilder!(context, text);
@@ -41,7 +44,10 @@ class MonthWidget extends StatelessWidget {
     return Text(
       text.capitalize(),
       textAlign: textAlign ?? TextAlign.center,
-      style: textStyle ?? Theme.of(context).textTheme.titleLarge!,
+      style: textStyle ?? Theme
+          .of(context)
+          .textTheme
+          .titleLarge!,
     );
   }
 
@@ -49,7 +55,10 @@ class MonthWidget extends StatelessWidget {
     return Text(
       text.capitalize(),
       textAlign: textAlign ?? TextAlign.center,
-      style: textStyle ?? Theme.of(context).textTheme.titleLarge!,
+      style: textStyle ?? Theme
+          .of(context)
+          .textTheme
+          .titleLarge!,
     );
   }
 }

@@ -59,7 +59,8 @@ class CleanCalendarController extends ChangeNotifier {
     this.onPreviousMinDateTapped,
     this.weekdayStart = DateTime.monday,
     this.initialFocusDate,
-  })  : assert(weekdayStart <= DateTime.sunday),
+  })
+      : assert(weekdayStart <= DateTime.sunday),
         assert(weekdayStart >= DateTime.monday) {
     final x = weekdayStart - 1;
     weekdayEnd = x == 0 ? 7 : x;
@@ -146,7 +147,6 @@ class CleanCalendarController extends ChangeNotifier {
   }
 
   /// Scroll to [date.month].
-  ///
   /// Animate the list over [duration] using the given [curve] such that the
   /// item at [index] ends up with its leading edge at the given [alignment].
   /// See [jumpTo] for an explanation of alignment.
