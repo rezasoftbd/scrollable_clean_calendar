@@ -293,7 +293,7 @@ class DaysWidget extends StatelessWidget {
           (values.selectedMaxDate != null &&
               values.day.isSameDay(values.selectedMaxDate!))) {
         bgColor =
-            selectedBackgroundColor ?? Colors.pink;
+            selectedBackgroundColor ?? Color(0xFFF6576D);
         txtStyle =
             (textStyle ?? Theme
                 .of(context)
@@ -333,7 +333,7 @@ class DaysWidget extends StatelessWidget {
         }
       } else {
         bgColor = selectedBackgroundColorBetween ??
-            Colors.pink;
+            Color(0xFFF6576D);
         txtStyle =
             (textStyle ?? Theme
                 .of(context)
@@ -375,7 +375,7 @@ class DaysWidget extends StatelessWidget {
         // decoration: boxDecoration,
         padding: values.selectedMinDate != null &&
             values.day.isSameDay(values.selectedMinDate!)
-            ? EdgeInsets.all(12)
+            ? EdgeInsets.all(8)
             : EdgeInsets.zero,
         decoration: BoxDecoration(
             color: values.selectedMinDate != null &&

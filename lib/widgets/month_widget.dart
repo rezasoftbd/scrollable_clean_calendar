@@ -27,8 +27,7 @@ class MonthWidget extends StatelessWidget {
     final text =
         '${DateFormat('MMMM', locale)
         .format(DateTime(month.year, month.month))
-        .capitalize()} ${DateFormat('(yyyy)', locale).format(
-        DateTime(month.year, month.month))}';
+        .capitalize()}';
 
     if (monthBuilder != null) {
       return monthBuilder!(context, text);
@@ -47,7 +46,7 @@ class MonthWidget extends StatelessWidget {
       style: textStyle ?? Theme
           .of(context)
           .textTheme
-          .titleLarge!,
+          .titleSmall!,
     );
   }
 
@@ -57,8 +56,7 @@ class MonthWidget extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       style: textStyle ?? Theme
           .of(context)
-          .textTheme
-          .titleLarge!,
+          .textTheme.titleSmall!,
     );
   }
 }

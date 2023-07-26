@@ -57,7 +57,7 @@ class WeekdaysWidget extends StatelessWidget {
                       .bodyLarge!
                       .color!
                       .withOpacity(.4),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                 ),
       ),
     );
@@ -74,7 +74,7 @@ class WeekdaysWidget extends StatelessWidget {
                       .bodyLarge!
                       .color!
                       .withOpacity(.4),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                 ),
       ),
     );

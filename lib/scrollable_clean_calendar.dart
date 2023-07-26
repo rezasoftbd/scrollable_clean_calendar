@@ -140,9 +140,16 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
     return ListView.separated(
       controller: widget.scrollController,
       padding: widget.padding ??
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-      separatorBuilder: (_, __) =>
-          SizedBox(height: widget.spaceBetweenCalendars),
+          const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
+      separatorBuilder: (_, __) {
+        return Column(
+          children: [
+            SizedBox(height: widget.spaceBetweenCalendars/2),
+            Divider(),
+            SizedBox(height: widget.spaceBetweenCalendars/2)
+          ],
+        );
+      },
       itemCount: widget.calendarController.months.length,
       itemBuilder: (context, index) {
         final month = widget.calendarController.months[index];
@@ -156,9 +163,16 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
     return ScrollablePositionedList.separated(
       itemScrollController: widget.calendarController.itemScrollController,
       padding: widget.padding ??
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-      separatorBuilder: (_, __) =>
-          SizedBox(height: widget.spaceBetweenCalendars),
+          const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
+      separatorBuilder: (_, __) {
+        return Column(
+          children: [
+            SizedBox(height: widget.spaceBetweenCalendars/2),
+            Divider(),
+            SizedBox(height: widget.spaceBetweenCalendars/2)
+          ],
+        );
+      },
       itemCount: widget.calendarController.months.length,
       itemBuilder: (context, index) {
         final month = widget.calendarController.months[index];
@@ -169,69 +183,55 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
   }
 
   Widget childCollumn(DateTime month) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade400.withOpacity(0.5),
-                blurRadius: 10,
-                spreadRadius: 3
-            )
-          ]
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: double.maxFinite,
-            child: MonthWidget(
-              month: month,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: double.maxFinite,
+          child: MonthWidget(
+            month: month,
+            locale: widget.locale,
+            layout: widget.layout,
+            monthBuilder: widget.monthBuilder,
+            textAlign: widget.monthTextAlign,
+            textStyle: widget.monthTextStyle,
+          ),
+        ),
+        SizedBox(height: widget.spaceBetweenMonthAndCalendar/2),
+        Column(
+          children: [
+            WeekdaysWidget(
+              showWeekdays: widget.showWeekdays,
+              cleanCalendarController: widget.calendarController,
               locale: widget.locale,
               layout: widget.layout,
-              monthBuilder: widget.monthBuilder,
-              textAlign: widget.monthTextAlign,
-              textStyle: widget.monthTextStyle,
+              weekdayBuilder: widget.weekdayBuilder,
+              textStyle: widget.weekdayTextStyle,
             ),
-          ),
-          SizedBox(height: widget.spaceBetweenMonthAndCalendar),
-          Column(
-            children: [
-              WeekdaysWidget(
-                showWeekdays: widget.showWeekdays,
-                cleanCalendarController: widget.calendarController,
-                locale: widget.locale,
-                layout: widget.layout,
-                weekdayBuilder: widget.weekdayBuilder,
-                textStyle: widget.weekdayTextStyle,
-              ),
-              AnimatedBuilder(
-                animation: widget.calendarController,
-                builder: (_, __) {
-                  return DaysWidget(
-                    month: month,
-                    cleanCalendarController: widget.calendarController,
-                    calendarCrossAxisSpacing: widget.calendarCrossAxisSpacing,
-                    calendarMainAxisSpacing: widget.calendarMainAxisSpacing,
-                    layout: widget.layout,
-                    dayBuilder: widget.dayBuilder,
-                    backgroundColor: widget.dayBackgroundColor,
-                    selectedBackgroundColor: widget.daySelectedBackgroundColor,
-                    selectedBackgroundColorBetween:
-                    widget.daySelectedBackgroundColorBetween,
-                    disableBackgroundColor: widget.dayDisableBackgroundColor,
-                    dayDisableColor: widget.dayDisableColor,
-                    radius: widget.dayRadius,
-                    textStyle: widget.dayTextStyle,
-                  );
-                },
-              )
-            ],
-          )
-        ],
-      ),
+            AnimatedBuilder(
+              animation: widget.calendarController,
+              builder: (_, __) {
+                return DaysWidget(
+                  month: month,
+                  cleanCalendarController: widget.calendarController,
+                  calendarCrossAxisSpacing: widget.calendarCrossAxisSpacing,
+                  calendarMainAxisSpacing: widget.calendarMainAxisSpacing,
+                  layout: widget.layout,
+                  dayBuilder: widget.dayBuilder,
+                  backgroundColor: widget.dayBackgroundColor,
+                  selectedBackgroundColor: widget.daySelectedBackgroundColor,
+                  selectedBackgroundColorBetween:
+                  widget.daySelectedBackgroundColorBetween,
+                  disableBackgroundColor: widget.dayDisableBackgroundColor,
+                  dayDisableColor: widget.dayDisableColor,
+                  radius: widget.dayRadius,
+                  textStyle: widget.dayTextStyle,
+                );
+              },
+            )
+          ],
+        )
+      ],
     );
   }
 }
